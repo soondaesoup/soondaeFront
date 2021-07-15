@@ -47,9 +47,11 @@ const useStyles = makeStyles((theme) => ({
     drawer: {
         width: drawerWidth,
         flexShrink: 0,
+
     },
     drawerPaper: {
         width: drawerWidth,
+
     },
     drawerHeader: {
         display: 'flex',
@@ -77,10 +79,10 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function PersistentDrawerRight() {
+const PersistentDrawerRight = () => {
     const classes = useStyles();
     const theme = useTheme();
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(true);
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -132,12 +134,12 @@ export default function PersistentDrawerRight() {
             >
                 <div className={classes.drawerHeader}>
                     <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                        {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
                     </IconButton>
                 </div>
                 <Divider />
                 <List>
-                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+                    {['Signin', 'Signup', 'Send email', 'Drafts'].map((text, index) => (
                         <ListItem button key={text}>
                             <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                             <ListItemText primary={text} />
@@ -157,3 +159,4 @@ export default function PersistentDrawerRight() {
         </div>
     );
 }
+export default PersistentDrawerRight;
