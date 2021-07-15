@@ -1,13 +1,14 @@
 import './App.css';
 import Appbar from "./components/ui/Appbar";
 import MainList from "./components/ui/MainList";
-import Mypage from "./components/ui/Mypage";
+import InPutText from "./components/ex01/InPutText"
+import UpLoadButton from "./components/ex01/UpLoadButton"
+import InPutItem from "./components/ex01/InPutItem";
 
 function App() {
   return (
     <div className="App">
-      <MainList></MainList>
-      <Mypage></Mypage>
+        <InPutItem></InPutItem>
       {/*<Grid></Grid>*/}
     </div>
   );
