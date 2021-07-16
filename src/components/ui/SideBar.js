@@ -75,12 +75,12 @@ const ClippedDrawer = () => {
                     <Divider/>
                     <List>
                         <ListItem button>
-                            <ListItemIcon><FavoriteIcon/></ListItemIcon>
-                            <ListItemText primary={"찜 상품"}/>
-                        </ListItem>
-                        <ListItem button>
                             <ListItemIcon><LocalMallIcon/></ListItemIcon>
                             <ListItemText primary={"내 상품 등록"}/>
+                        </ListItem>
+                        <ListItem button>
+                            <ListItemIcon><FavoriteIcon/></ListItemIcon>
+                            <ListItemText primary={"찜 상품"}/>
                         </ListItem>
                     </List>
                 </div>

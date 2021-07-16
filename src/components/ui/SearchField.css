@@ -1,0 +1,37 @@
+#left{
+    line-height: 2;
+    vertical-align: middle;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+}
+
+.LogoTitle {
+    display: inline-block;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 3rem;
+    margin-right: 15%;
+}
+#SearchInputForm{
+    display: inline-block;
+    font-size: 1.5rem;
+}
+
+.makeStyles-root-1 > * {
+    margin: 0 !important;
+}
+
+.MuiFormControl-root {
+    display: inline-block !important;
+    width: 13vw !important;
+}
+
+#standard-basic {
+    width: 13vw;
+}
+
+#SearchButton {
+    font-size: 0.8rem;
+}

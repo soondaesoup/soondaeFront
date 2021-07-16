@@ -95,7 +95,7 @@ const BoardList = () => {
                         찜
                     </Button>
                     <Button size="small" color="primary">
-                        <FavoriteIcon/>
+                        <FavoriteIcon/>{value.favoriteCount}
                     </Button>
                 </CardActions>
             </Card>

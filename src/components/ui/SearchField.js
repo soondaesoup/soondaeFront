@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
 import {InputAdornment} from "@material-ui/core";
 import Button from '@material-ui/core/Button';
+import SearchField from "./SearchField.css"
 
 const useStyles1 = makeStyles((theme) => ({
     root: {
@@ -38,24 +39,19 @@ const SearchTextFields = () => {
 
         <div id="grid" style={{width: "100%"}}>
             <div id="left">
-                <h1>로고 CAMPUED 로고</h1>
-            </div>
-            <div id="right">
-                <form className={classes.root} noValidate autoComplete="off">
+                <h1 className={"LogoTitle"}>CAMPUSED</h1>
+                <form id={"SearchInputForm"} className={classes.root} noValidate autoComplete="off">
                     <TextField id="standard-basic" InputProps={{
                         startAdornment: (
                             <InputAdornment position="start">
                                 <SearchIcon />
                             </InputAdornment>
                         ),
-                    }}label="캠핑 용품" />
+                    }} />
 
                     {/*<TextField id="filled-basic" label="Filled" variant="filled" />*/}
                     {/*<TextField id="outlined-basic" label="Outlined" variant="outlined" />*/}
                 </form>
-                <Button variant="outlined" color="primary">
-                    검색
-                </Button>
             </div>
             {/*<div className={classes.root}>*/}
 
