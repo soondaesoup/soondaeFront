@@ -1,18 +1,14 @@
-import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
+import React, {useEffect, useState} from 'react';
 import Button from '@material-ui/core/Button';
-import CameraIcon from '@material-ui/icons/PhotoCamera';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
 import { withStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
@@ -20,8 +16,16 @@ import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import boardListService from "../service/boardListService";
 
-
+const initState = {
+    boardDTO: [],
+    boardImageDTO: [],
+    userDTO: [],
+    favoriteCount: 0,
+    replyCount: 0,
+}
 
 
 
@@ -108,6 +112,17 @@ export default function Album() {
         },
     }))(MuiDialogActions);
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    const [data, setData] = useState(initState);
+
+    useEffect(() => {
+        const res = boardListService.getList().then(res => {
+            setData(res)
+        });
+    },[])
+
+    // return start
+    ////////////////////////////////////////////////////////////////////////////////////////////////
     return (
         <React.Fragment>
             <div>
@@ -157,6 +172,9 @@ export default function Album() {
                                         <Typography>
                                             <div>12000원</div>
                                         </Typography>
+                                        <Typography>
+                                            <div>주소</div>
+                                        </Typography>
                                     </CardContent>
                                     <CardActions>
                                         <Button size="small" color="primary" onClick={handleClickOpen}>
@@ -166,7 +184,7 @@ export default function Album() {
                                             찜
                                         </Button>
                                         <Button size="small" color="primary">
-                                            좋아요
+                                            <FavoriteIcon/>
                                         </Button>
                                     </CardActions>
                                 </Card>
