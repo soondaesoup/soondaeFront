@@ -48,7 +48,6 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.background.paper,
         padding: theme.spacing(6),
     },
-
 }));
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -66,12 +65,6 @@ const MainList = () => {
         console.log("modalTrigger activate", open)
         setOpen(!open);
     }
-
-    useEffect(() => {
-        const res = boardListService.getList().then(res => {
-            setData(res)
-        });
-    },[])
 
     // return start
     ////////////////////////////////////////////////////////////////////////////////////////////////
