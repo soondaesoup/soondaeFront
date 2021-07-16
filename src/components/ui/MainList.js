@@ -9,15 +9,10 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { withStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import MuiDialogContent from '@material-ui/core/DialogContent';
-import MuiDialogActions from '@material-ui/core/DialogActions';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import boardListService from "../service/boardListService";
+import ModalDialog from "./ModalDialog";
 
 const initState = {
     boardDTO: [],
@@ -26,8 +21,6 @@ const initState = {
     favoriteCount: 0,
     replyCount: 0,
 }
-
-
 
 const useStyles = makeStyles((theme) => ({
     icon: {
@@ -60,60 +53,19 @@ const useStyles = makeStyles((theme) => ({
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8];
 
-export default function Album() {
+const MainList = () => {
+
+    const [data, setData] = useState(initState);
+    const [open, setOpen] = useState(false); /* Modal on/off */
 
     const classes = useStyles();
 
-    const [open, setOpen] = React.useState(false);
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-    const handleClose = () => {
-        setOpen(false);
-    };
-    const styles = (theme) => ({
-        root: {
-            margin: 0,
-            padding: theme.spacing(2),
-        },
-        closeButton: {
-            position: 'absolute',
-            right: theme.spacing(1),
-            top: theme.spacing(1),
-            color: theme.palette.grey[500],
-        },
-    });
-
-    const DialogTitle = withStyles(styles)((props) => {
-        const { children, classes, onClose, ...other } = props;
-        return (
-            <MuiDialogTitle disableTypography className={classes.root} {...other}>
-                <Typography variant="h6">{children}</Typography>
-                {onClose ? (
-                    <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
-                        <CloseIcon />
-                    </IconButton>
-                ) : null}
-            </MuiDialogTitle>
-        );
-    });
-
-    const DialogContent = withStyles((theme) => ({
-        root: {
-            padding: theme.spacing(2),
-        },
-    }))(MuiDialogContent);
-
-    const DialogActions = withStyles((theme) => ({
-        root: {
-            margin: 0,
-            padding: theme.spacing(1),
-        },
-    }))(MuiDialogActions);
-
     ////////////////////////////////////////////////////////////////////////////////////////////////
-    const [data, setData] = useState(initState);
+
+    const modalTrigger = () => {
+        console.log("modalTrigger activate", open)
+        setOpen(!open);
+    }
 
     useEffect(() => {
         const res = boardListService.getList().then(res => {
@@ -125,33 +77,6 @@ export default function Album() {
     ////////////////////////////////////////////////////////////////////////////////////////////////
     return (
         <React.Fragment>
-            <div>
-                <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
-                    <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                        Modal title
-                    </DialogTitle>
-                    <DialogContent dividers>
-                        <Typography gutterBottom>
-                            Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
-                            in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                        </Typography>
-                        <Typography gutterBottom>
-                            Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis
-                            lacus vel augue laoreet rutrum faucibus dolor auctor.
-                        </Typography>
-                        <Typography gutterBottom>
-                            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel
-                            scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus
-                            auctor fringilla.
-                        </Typography>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button autoFocus onClick={handleClose} color="primary">
-                            Save changes
-                        </Button>
-                    </DialogActions>
-                </Dialog>
-            </div>
             <CssBaseline />
             <main>
                 <Container fixed className={classes.cardGrid} maxWidth="md">
@@ -177,7 +102,7 @@ export default function Album() {
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-                                        <Button size="small" color="primary" onClick={handleClickOpen}>
+                                        <Button size="small" color="primary" onClick={modalTrigger}>
                                             상세보기
                                         </Button>
                                         <Button size="small" color="primary">
@@ -192,6 +117,12 @@ export default function Album() {
                         ))}
                     </Grid>
                 </Container>
+                {/* ModalDialog Unit*/}
+                <ModalDialog
+                    modalTrigger={modalTrigger}
+                    open={open}
+                />
+                {/* End ModalDialog Unit*/}
             </main>
             {/* Footer */}
             <footer className={classes.footer}>
@@ -201,10 +132,11 @@ export default function Album() {
                 <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
                     Something here to give the footer a purpose!
                 </Typography>
-
             </footer>
             {/* End footer */}
         </React.Fragment>
     );
 }
+
+export default MainList
 
