@@ -58,9 +58,15 @@ const ClippedDrawer = () => {
                 <Toolbar />
                 <div className={classes.drawerContainer}>
                     <List>
-                        {['로그인','회원가입'].map((text, index) => (
+                        {['로그인'].map((text, index) => (
                             <ListItem button key={text}>
                                 <ListItemIcon>{index % 2 === 1 ? <PersonIcon /> : <LockOpenIcon />}</ListItemIcon>
+                                <ListItemText primary={text} />
+                            </ListItem>
+                        ))}
+                        {['회원가입'].map((text, index) => (
+                            <ListItem button key={text}>
+                                <ListItemIcon>{index % 2 === 1 ? <PersonIcon /> : <PersonIcon />}</ListItemIcon>
                                 <ListItemText primary={text} />
                             </ListItem>
                         ))}
