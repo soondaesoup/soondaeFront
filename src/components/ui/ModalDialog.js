@@ -52,22 +52,40 @@ const DialogActions = withStyles((theme) => ({
 }))(MuiDialogActions);
 /* 모달 설정 끝 */
 
-/*  */
+/* 파일 경로 생성 */
+
+const fileTempPath = "C:\\ztemp\\";
 
 /* */
 
 const ModalDialog = ({modalTrigger, open}) => {
 
-    console.log('dialog 실행')
-    
-    const bno = 22;
     const [data, setData] = useState({
         boardDTO:[],
         replyDTO:[],
         boardImageDTO:[],
-        withMemberDTO:[],
+        withMemberDTO: {},
         favoriteCount:0
     });
+
+    const replyList = data.replyDTO.map(value =>
+        <div>
+            <li key={value.rno}>
+                {value.rwriter}
+                {value.rtext}
+                {value.rmodDate}
+            </li>
+        </div>
+    )
+
+    const imgList = data.boardImageDTO.map(value =>
+        <div>
+            {console.log('imgList',value)}
+            <div key={value.fuuid}>
+                <img src={fileTempPath+value.fuuid+".jpg"}/>
+            </div>
+        </div>
+    )
 
     useEffect(() => {
         boardListService.getOne(22).then(value =>
@@ -84,17 +102,26 @@ const ModalDialog = ({modalTrigger, open}) => {
                 aria-labelledby="customized-dialog-title"
                 open={open}>
                 <DialogTitle id="customized-dialog-title" onClose={modalTrigger}>
-                    [{data.boardDTO.bcategory}] {data.boardDTO.btitle}
+                    [{data.boardDTO.bcategory}] {data.boardDTO.btitle} ({data.replyDTO.length})
+                    가격 : {data.boardDTO.bprice}
+                    <div>
+                    {data.withMemberDTO.mnickName}
+                    {data.withMemberDTO.mphone}
+                    {data.withMemberDTO.memail}
+                    {data.withMemberDTO.maddress}
+                    </div>
                 </DialogTitle>
                 <DialogContent dividers>
                     <Typography gutterBottom>
-                        {/*{<img src={} alt="잉"/>}*/}
+                        {/*{<img src={fileTempPath+data.} alt="잉"/>}*/}
+                        {data.boardDTO.bcontent}
+                        {imgList}
                     </Typography>
                 </DialogContent>
                 <DialogActions>
-                    <Button autoFocus onClick={modalTrigger} color="primary">
-                        예매하기
-                    </Button>
+                    <ul>
+                        {replyList}
+                    </ul>
                 </DialogActions>
             </Dialog>
         </div>
