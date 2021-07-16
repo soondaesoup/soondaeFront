@@ -16,7 +16,13 @@ const boardListService = () => {
         return result
     }
 
-    return {getList, getOne}
+    const boardRegister = async (data) => {
+        const result = await axios.post(baseURL + "register")
+        console.log("================= boardRegister Result", result.data)
+        return result.data;
+    }
+
+    return {getList, getOne, boardRegister}
 }
 
 export default boardListService();

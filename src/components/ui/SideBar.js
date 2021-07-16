@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
@@ -14,6 +14,8 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import PersonIcon from '@material-ui/icons/Person';
 import LocalMallIcon from '@material-ui/icons/LocalMall';
+import BoardRegisterModal from "./BoardRegisterModal";
+import ModalDialog from "./ModalDialog";
 
 const drawerWidth = 240;
 
@@ -43,8 +45,18 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+
+
 const ClippedDrawer = () => {
+
     const classes = useStyles();
+
+    const [open, setOpen] = useState(false); /* Modal on/off */
+
+    const modalTrigger = () => {
+        console.log("modalTrigger activate", open)
+        setOpen(!open);
+    }
 
     return (
         <div className={classes.root}>
@@ -80,11 +92,20 @@ const ClippedDrawer = () => {
                         </ListItem>
                         <ListItem button>
                             <ListItemIcon><LocalMallIcon/></ListItemIcon>
-                            <ListItemText primary={"내 상품 등록"}/>
+                            <ListItemText
+                                primary={"내 상품 등록"}
+                                onClick={modalTrigger}
+                            />
                         </ListItem>
                     </List>
                 </div>
             </Drawer>
+            {/* ModalDialog Unit*/}
+            <BoardRegisterModal
+                modalTrigger={modalTrigger}
+                open={open}
+            />
+            {/* End ModalDialog Unit*/}
         </div>
     );
 }

@@ -80,7 +80,6 @@ const ModalDialog = ({modalTrigger, open}) => {
 
     const imgList = data.boardImageDTO.map(value =>
         <div>
-            {console.log('imgList',value)}
             <div key={value.fuuid}>
                 <img src={fileTempPath+value.fuuid+".jpg"}/>
             </div>
@@ -92,8 +91,6 @@ const ModalDialog = ({modalTrigger, open}) => {
             setData(value.data),
         )
     }, [])
-
-    console.log('data의 값', data)
 
     return (
         <div>
