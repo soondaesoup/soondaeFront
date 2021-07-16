@@ -48,14 +48,6 @@ const ClippedDrawer = () => {
     return (
         <div className={classes.root}>
             <CssBaseline />
-            <AppBar position="fixed" className={classes.appBar}>
-                <Toolbar>
-                    <Typography variant="h6" noWrap>
-
-                    </Typography>
-                </Toolbar>
-
-            </AppBar>
             <Drawer
                 className={classes.drawer}
                 variant="permanent"

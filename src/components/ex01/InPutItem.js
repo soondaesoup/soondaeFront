@@ -1,8 +1,10 @@
 import React from 'react';
 import Grid from "@material-ui/core/Grid";
 import UpLoadButton from "./UpLoadButton";
-import InputTitle from "./InputTitle";
+import Input from "./Input";
+import SearchButton from "./SearchButton";
 import InPutText from "./InPutText";
+import InputButton from "./InputButton";
 import Typography from "@material-ui/core/Typography";
 
 const GridTest = () => {
@@ -13,10 +15,10 @@ const GridTest = () => {
                     <h1>상품등록</h1>
                     <hr/>
                 </Grid>
-                <Grid item xs={12} sm={5}>
-                    <h1>상품사진</h1>
+                <Grid item xs={6} sm={6}>
+                    <h2>상품사진</h2>
                 </Grid>
-                <Grid item xs={12} sm={5}>
+                <Grid item xs={6} sm={6}>
                     <UpLoadButton></UpLoadButton>
                 </Grid>
                 <Grid item xs={12} sm={12}>
@@ -30,26 +32,40 @@ const GridTest = () => {
                </Typography>
                 </Grid>
                 <Grid item xs={3} md={3}>
-                    <h1>제목</h1>
+                    <h2>제목</h2>
                 </Grid>
-            <Grid item xs={9} md={9}>
-                    <InputTitle></InputTitle>
+            <Grid item xs={7} md={7}>
+                    <Input></Input>
             </Grid>
 
-                <Grid item xs={12} md={12}>
-                    <h1>내용</h1>
+                <Grid item xs={3} md={3}>
+                    <h2>내용</h2>
                 </Grid>
 
-                <Grid item xs={12}>
+                <Grid item xs={7} md={7}>
                   <InPutText></InPutText>
                 </Grid>
                 <Grid item xs={3} md={3}>
-                    <h1>가격</h1>
+                    <h2>가격</h2>
                 </Grid>
-                <Grid item xs={9} md={9}>
-                    <InputTitle></InputTitle>
+                <Grid item xs={7} md={7}>
+                    <Input></Input>
                 </Grid>
-
+                <Grid item xs={3} md={3}>
+                    <h2>거래지역</h2>
+                </Grid>
+                <Grid item xs={7} md={7}>
+                    <Input></Input>
+                </Grid> <Grid item xs={2} md={2}>
+                    <SearchButton></SearchButton>
+                </Grid>
+                <Grid item xs={3} md={3}>
+                </Grid>
+                <Grid item xs={7} md={7}>
+                </Grid>
+                <Grid item xs={2} md={2}>
+                <InputButton></InputButton>
+            </Grid>
             </Grid>
         </div>
     );
