@@ -8,7 +8,7 @@ const boardListService = () => {
     const getList = async () => {
         const result = await axios.get(baseURL+"list")
         console.log(result.data)
-        return result;
+        return result.data;
     }
 
 
