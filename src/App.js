@@ -1,14 +1,16 @@
 import './App.css';
-import MainList from "./components/ui/MainList";
-import Mypage from "./components/ui/Mypage";
+import SideBar from "./components/ui/SideBar";
 import SearchField from "./components/ui/SearchField";
+import BoardList from "./components/ui/BoardList";
+import Footer from "./components/ui/Footer";
 
 function App() {
   return (
     <div className="App">
         <SearchField></SearchField>
-        <MainList></MainList>
-        <Mypage></Mypage>
+        <SideBar></SideBar>
+        <BoardList></BoardList>
+        <Footer></Footer>
       {/*<Grid></Grid>*/}
     </div>
   );

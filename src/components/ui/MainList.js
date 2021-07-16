@@ -20,8 +20,9 @@ import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-
-
+import ItemList from "../wish/ItemList";
+import itemService from "../wish/itemService";
+import Wish from "../wish/Wish";
 
 
 
@@ -56,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-export default function Album() {
+export default function MainList() {
 
     const classes = useStyles();
 
@@ -107,6 +108,14 @@ export default function Album() {
             padding: theme.spacing(1),
         },
     }))(MuiDialogActions);
+
+    const clickWish = () => {
+        console.log("click wish")
+        const addToCart = itemService.getAddFn()
+        console.log(addToCart)
+
+        addToCart()
+    }
 
     return (
         <React.Fragment>
@@ -162,7 +171,7 @@ export default function Album() {
                                         <Button size="small" color="primary" onClick={handleClickOpen}>
                                             상세보기
                                         </Button>
-                                        <Button size="small" color="primary">
+                                        <Button size="small" color="primary" onClick={clickWish}>
                                             찜
                                         </Button>
                                         <Button size="small" color="primary">

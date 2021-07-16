@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,6 +13,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import PersonIcon from '@material-ui/icons/Person';
+import LocalMallIcon from '@material-ui/icons/LocalMall';
 
 const drawerWidth = 240;
 
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     },
     appBar: {
         zIndex: theme.zIndex.drawer + 1,
-        backgroundColor:'white',
+        backgroundColor: 'white',
     },
     drawer: {
         flexShrink: 0,
@@ -47,7 +48,7 @@ const ClippedDrawer = () => {
 
     return (
         <div className={classes.root}>
-            <CssBaseline />
+            <CssBaseline/>
             <Drawer
                 className={classes.drawer}
                 variant="permanent"
@@ -55,24 +56,32 @@ const ClippedDrawer = () => {
                     paper: classes.drawerPaper,
                 }}
             >
-                <Toolbar />
+                <Toolbar/>
                 <div className={classes.drawerContainer}>
                     <List>
-                        {['로그인','회원가입'].map((text, index) => (
-                            <ListItem button key={text}>
-                                <ListItemIcon>{index % 2 === 1 ? <PersonIcon /> : <LockOpenIcon />}</ListItemIcon>
-                                <ListItemText primary={text} />
-                            </ListItem>
-                        ))}
+                        <ListItem button>
+                            <ListItemIcon>
+                                <LockOpenIcon></LockOpenIcon>
+                            </ListItemIcon>
+                            <ListItemText primary={"로그인"}/>
+                        </ListItem>
+                        <ListItem button>
+                            <ListItemIcon>
+                                <PersonIcon></PersonIcon>
+                            </ListItemIcon>
+                            <ListItemText primary={"회원가입"}/>
+                        </ListItem>
                     </List>
-                    <Divider />
+                    <Divider/>
                     <List>
-                        {['찜 상품'].map((text, index) => (
-                            <ListItem button key={text}>
-                                <ListItemIcon><FavoriteIcon /></ListItemIcon>
-                                <ListItemText primary={text}/>
-                            </ListItem>
-                        ))}
+                        <ListItem button>
+                            <ListItemIcon><FavoriteIcon/></ListItemIcon>
+                            <ListItemText primary={"찜 상품"}/>
+                        </ListItem>
+                        <ListItem button>
+                            <ListItemIcon><LocalMallIcon/></ListItemIcon>
+                            <ListItemText primary={"내 상품 등록"}/>
+                        </ListItem>
                     </List>
                 </div>
             </Drawer>
