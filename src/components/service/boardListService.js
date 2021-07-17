@@ -4,8 +4,8 @@ const baseURL = "http://localhost:8089/api/board/";
 
 const boardListService = () => {
 
-    const getList = async () => {
-        const result = await axios.get(baseURL + "list")
+    const getList = async (page) => {
+        const result = await axios.get(baseURL + "list?page="+page)
         console.log(result.data)
         return result.data;
     }

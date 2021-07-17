@@ -15,12 +15,22 @@ import Pagination from '@material-ui/lab/Pagination';
 
 const initState = {
     boardListDTO: [],
-    listRequestDTO: {},
-    pageMaker: {},
+    listRequestDTO: {
+        keyword: "",
+        page: 1,
+        size: 8,
+        type: "",
+    },
+    pageMaker: {
+        next: true,
+        page: 1,
+        pageNumberList: [],
+        prev: false,
+        size: 8,
+    },
 }
 
 const BoardList = () => {
-
 
     const useStyles = makeStyles((theme) => ({
         icon: {
@@ -56,18 +66,24 @@ const BoardList = () => {
 
     const [open, setOpen] = useState(false); /* Modal on/off */
 
+    useEffect(() => {
+        boardListService.getList(data.listRequestDTO.page).then(res => {
+            setData(res);
+        })
+    }, [data.listRequestDTO.page])
+
+    const movePage = (num) => {
+        setData({...data, listRequestDTO: {
+            page: num
+            }})
+    }
+
     const modalTrigger = () => {
-        console.log("modalTrigger activate", open)
         setOpen(!open);
     }
 
-    useEffect(() => {
-        boardListService.getList().then(res => {
-            setData(res);
-        })
-    }, [])
 
-    const list = data.boardListDTO.map(value =>
+    const list = data.boardListDTO?.map(value =>
         // console.log(value.boardDTO.btitle)
         <Grid item xs={12} sm={3}>
 
@@ -103,23 +119,15 @@ const BoardList = () => {
         </Grid>
     )
 
-    const pageStyle = makeStyles((theme) => ({
-        root: {
-            '& > *': {
-                marginTop: theme.spacing(2),
-
-            },
-        },
-    }));
-
-    const PageList = () => {
-
-        console.log("11111111111111111",data.pageMaker.pageNumberList);
-        const classes = pageStyle();
+    const PageList = ({data, movePage}) => {
 
         return (
-            <div className={classes.root}>
-                    <Pagination count={data.pageMaker.pageNumberList?.length} color="secondary" />
+            <div>
+                {data.pageMaker.prev == false ? <button onClick={() => movePage(data.listRequestDTO.page-1)} disabled>prev</button> : <button onClick={() => movePage(data.listRequestDTO.page-1)}>prev</button>}
+                {data.pageMaker.pageNumberList?.map(page =>
+                    <button onClick={() => movePage(page)} key={page}>{page}</button>
+                )}
+                {data.pageMaker.next == false ? <button onClick={() => movePage(data.listRequestDTO.page+1)} disabled>next</button> : <button onClick={() => movePage(data.listRequestDTO.page+1)}>next</button>}
             </div>
         );
     }
@@ -130,7 +138,7 @@ const BoardList = () => {
                 <Grid container spacing={2}>
                     {list}
                 </Grid>
-                <PageList></PageList>
+                <PageList data={data} movePage={movePage}></PageList>
             </Container>
             <ModalDialog
                 modalTrigger={modalTrigger}
