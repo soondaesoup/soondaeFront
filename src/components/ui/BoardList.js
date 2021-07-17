@@ -11,6 +11,7 @@ import Grid from "@material-ui/core/Grid";
 import Container from '@material-ui/core/Container';
 import {makeStyles} from "@material-ui/core/styles";
 import ModalDialog from "./ModalDialog";
+import Pagination from '@material-ui/lab/Pagination';
 
 const initState = {
     boardListDTO: [],
@@ -102,12 +103,34 @@ const BoardList = () => {
         </Grid>
     )
 
+    const pageStyle = makeStyles((theme) => ({
+        root: {
+            '& > *': {
+                marginTop: theme.spacing(2),
+
+            },
+        },
+    }));
+
+    const PageList = () => {
+
+        console.log("11111111111111111",data.pageMaker.pageNumberList);
+        const classes = pageStyle();
+
+        return (
+            <div className={classes.root}>
+                    <Pagination count={data.pageMaker.pageNumberList?.length} color="secondary" />
+            </div>
+        );
+    }
+
     return (
         <div>
             <Container fixed className={classes.cardGrid} maxWidth="md">
                 <Grid container spacing={2}>
                     {list}
                 </Grid>
+                <PageList></PageList>
             </Container>
             <ModalDialog
                 modalTrigger={modalTrigger}

@@ -4,7 +4,7 @@
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 5%;
+    margin-top: 2%;
 }
 
 .LogoTitle {
@@ -34,4 +34,12 @@
 
 #SearchButton {
     font-size: 0.8rem;
+}
+.MuiContainer-root {
+    margin-top: 0 !important;
+}
+.MuiPagination-ul {
+    text-align: center !important;
+    margin-left: auto;
+    margin-right: auto;
 }
