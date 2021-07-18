@@ -3,12 +3,16 @@ import axios from "axios";
 const baseURL = "http://localhost:8089/api/board/";
 const loginURL = "http://localhost:8089/login";
 const headerObj = {
-    headers: {'Content-Type': 'application/json'}};
+    headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+    }
+};
 
 const boardService = () => {
 
     const getList = async (page) => {
-        const result = await axios.get(baseURL + "list?page="+page+"&keyword")
+        const result = await axios.get(baseURL + "list?page=" + page + "&keyword")
         console.log(result.data)
         return result.data;
     }

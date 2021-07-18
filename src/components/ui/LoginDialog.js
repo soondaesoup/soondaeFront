@@ -66,7 +66,6 @@ export default function LoginDialog({open, openLoginDialog}) {
     }
 
     const attemptLogin = async (e) => {
-        e.preventDefault();
         const result = await boardService.signIn({...login});
         console.log("loginAfter....>>>",result);
     }
