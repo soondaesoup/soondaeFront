@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import boardListService from "../service/boardListService";
+import boardListService from "../service/boardService";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";

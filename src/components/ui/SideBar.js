@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
@@ -14,6 +14,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import PersonIcon from '@material-ui/icons/Person';
 import LocalMallIcon from '@material-ui/icons/LocalMall';
+import LoginDialog from "./LoginDialog";
 
 const drawerWidth = 240;
 
@@ -44,10 +45,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ClippedDrawer = () => {
+
+    const [open, setOpen] = useState(false);
+
+    const openLoginDialog = () => {
+        setOpen(!open);
+    }
+
     const classes = useStyles();
 
     return (
         <div className={classes.root}>
+            <LoginDialog open={open} openLoginDialog={openLoginDialog}></LoginDialog>
             <CssBaseline/>
             <Drawer
                 className={classes.drawer}
@@ -59,11 +68,11 @@ const ClippedDrawer = () => {
                 <Toolbar/>
                 <div className={classes.drawerContainer}>
                     <List>
-                        <ListItem button>
+                        <ListItem onClick={() => openLoginDialog()} button>
                             <ListItemIcon>
                                 <LockOpenIcon></LockOpenIcon>
                             </ListItemIcon>
-                            <ListItemText primary={"로그인"}/>
+                            <ListItemText  primary={"로그인"}/>
                         </ListItem>
                         <ListItem button>
                             <ListItemIcon>
@@ -86,6 +95,7 @@ const ClippedDrawer = () => {
                 </div>
             </Drawer>
         </div>
+
     );
 }
 
