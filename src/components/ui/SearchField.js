@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
 import {InputAdornment} from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
 import Button from '@material-ui/core/Button';
 import SearchField from "./SearchField.css"
 
@@ -36,10 +37,15 @@ const SearchTextFields = () => {
     const classes = useStyles1();
 
     return (
-
+        <div>
+        <div>
         <div id="grid" style={{width: "100%"}}>
             <div id="left">
                 <h1 className={"LogoTitle"}>CAMPUSED</h1>
+            </div>
+        </div>
+                <div>
+                    <Grid xs={10}>
                 <form id={"SearchInputForm"} className={classes.root} noValidate autoComplete="off">
                     <TextField id="standard-basic" InputProps={{
                         startAdornment: (
@@ -52,10 +58,13 @@ const SearchTextFields = () => {
                     {/*<TextField id="filled-basic" label="Filled" variant="filled" />*/}
                     {/*<TextField id="outlined-basic" label="Outlined" variant="outlined" />*/}
                 </form>
-            </div>
+                    </Grid>
+
             {/*<div className={classes.root}>*/}
 
             {/*</div>*/}
+        </div>
+        </div>
         </div>
 
     );

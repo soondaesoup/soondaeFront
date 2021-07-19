@@ -15,6 +15,9 @@ import LockOpenIcon from '@material-ui/icons/LockOpen';
 import PersonIcon from '@material-ui/icons/Person';
 import LocalMallIcon from '@material-ui/icons/LocalMall';
 import LoginDialog from "./LoginDialog";
+import {Dialog} from "@material-ui/core";
+import JoinDia from "./JoinDia";
+import InputDia from "./InputDia";
 
 const drawerWidth = 240;
 
@@ -50,6 +53,8 @@ const ClippedDrawer = () => {
 
     const openLoginDialog = () => {
         setOpen(!open);
+    };const JoinDialog = () => {
+        setOpen(!open);
     }
 
     const classes = useStyles();
@@ -57,6 +62,10 @@ const ClippedDrawer = () => {
     return (
         <div className={classes.root}>
             <LoginDialog open={open} openLoginDialog={openLoginDialog}></LoginDialog>
+            <JoinDia open={open} JoinDiaOpen={JoinDia}></JoinDia>
+            <InputDia open={open} InputDiaOpen={InputDia}></InputDia>
+
+
             <CssBaseline/>
             <Drawer
                 className={classes.drawer}
@@ -74,7 +83,7 @@ const ClippedDrawer = () => {
                             </ListItemIcon>
                             <ListItemText  primary={"로그인"}/>
                         </ListItem>
-                        <ListItem button>
+                        <ListItem onClick={() => JoinDialog()} button>
                             <ListItemIcon>
                                 <PersonIcon></PersonIcon>
                             </ListItemIcon>

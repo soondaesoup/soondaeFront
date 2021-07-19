@@ -6,13 +6,23 @@ import SearchButton from "./SearchButton";
 import InPutText from "./InPutText";
 import InputButton from "./InputButton";
 import Typography from "@material-ui/core/Typography";
+import {makeStyles} from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
 
-const GridTest = () => {
+const useStyles = makeStyles((theme) => ({
+    InputText: {
+        '& .MuiTextField-root': {
+            margin: theme.spacing(1),
+            width: '75ch',
+        },
+    },
+}));
+
+const InputItem = () => {
     return (
         <div>
             <Grid container spacing={3}>
                 <Grid item xs={12}>
-                    <h1>상품등록</h1>
                     <hr/>
                 </Grid>
                 <Grid item xs={6} sm={6}>
@@ -68,7 +78,10 @@ const GridTest = () => {
             </Grid>
             </Grid>
         </div>
+
+
+
     );
 };
 
-export default GridTest;
+export default InputItem;

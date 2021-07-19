@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles((theme) => ({
-    root: {
+    InputText: {
         '& .MuiTextField-root': {
             margin: theme.spacing(1),
             width: '75ch',
@@ -20,7 +20,7 @@ export default function MultilineTextFields() {
     };
 
     return (
-        <form className={classes.root} noValidate autoComplete="off">
+        <form className={classes.InputText} noValidate autoComplete="off">
             <div>
                 <TextField
                     id="outlined-multiline-static"

@@ -1,13 +1,26 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 import Grid from "@material-ui/core/Grid";
 import UpLoadButton from "./UpLoadButton";
-import Input from "./Input";
-import SearchButton from "./SearchButton";
-import InPutText from "./InPutText";
-import InputButton from "./InputButton";
 import Typography from "@material-ui/core/Typography";
+import Input from "./Input";
+import InPutText from "./InPutText";
+import SearchButton from "./SearchButton";
+import InputButton from "./InputButton";
 
-const GridTest = () => {
+const useStyles = makeStyles((theme) => ({
+    root: {
+        '& > *': {
+            margin: theme.spacing(1),
+            width: '25ch',
+        },
+    },
+}));
+
+const JoinForm = ()  =>{
+    const classes = useStyles();
+
     return (
         <div>
             <Grid container spacing={3}>
@@ -67,8 +80,10 @@ const GridTest = () => {
                     <InputButton></InputButton>
                 </Grid>
             </Grid>
+            <form className={classes.root} noValidate autoComplete="off">
+                <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+            </form>
         </div>
     );
-};
-
-export default GridTest;
+}
+export default JoinForm
